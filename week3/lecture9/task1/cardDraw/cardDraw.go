@@ -5,22 +5,23 @@ import (
 )
 
 type dealer interface {
-	Deal() *cardGame.Card, error
+	Deal() (*cardGame.Card, error)
 	Done() bool
 }
 
-func DrawAllCards(dealer dealer) []cardGame.Card {
+func DrawAllCards(dealer dealer) ([]cardGame.Card, error) {
 	var newDeck []cardGame.Card
 
 	for true {
 		card, err := dealer.Deal()
 		// done := dealer.Done()
 		// fmt.Println(done)
-		if card != nil {
-			newDeck = append(newDeck, *card)
+		if err != nil && dealer.Done() {
+			// newDeck = append(newDeck, *card)
+			return newDeck, nil
 		} else {
-			break
+			newDeck = append(newDeck, *card)
 		}
 	}
-	return newDeck
+	return newDeck, nil
 }

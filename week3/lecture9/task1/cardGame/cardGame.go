@@ -44,12 +44,10 @@ func (d *Deck) Shuffle() *Deck {
 
 func (d *Deck) Done() bool {
 	return len(d.deck) == 0
-	// return false
 }
 
 func (d *Deck) Deal() (*Card, error) {
 	if len(d.deck) != 0 {
-		// if !d.Done() {
 		firstCard := d.deck[0]
 		d.deck = d.deck[1:]
 

@@ -14,10 +14,7 @@ func DrawAllCards(dealer dealer) ([]cardGame.Card, error) {
 
 	for true {
 		card, err := dealer.Deal()
-		// done := dealer.Done()
-		// fmt.Println(done)
 		if err != nil && dealer.Done() {
-			// newDeck = append(newDeck, *card)
 			return newDeck, nil
 		} else {
 			newDeck = append(newDeck, *card)
